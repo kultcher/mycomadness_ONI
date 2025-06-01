@@ -1,0 +1,26 @@
+Assert failed
+
+UnityEngine.Debug:LogError (object)
+Debug:LogError (object) (at /home/build/workspace/game/Assets/Plugins/Debug.cs:153)
+Debug:Assert (bool) (at /home/build/workspace/game/Assets/Plugins/Debug.cs:190)
+Resource:.ctor (string,string) (at /home/build/workspace/game/Assets/Plugins/Klei/util/Resources/Resource.cs:39)
+Klei.AI.Modifier:.ctor (string,string,string) (at /home/build/workspace/game/Assets/scripts/ai/modifiers/Modifier.cs:13)
+Klei.AI.Trait:.ctor (string,string,string,single,bool,ChoreGroup[],bool,bool,string[],string[]) (at /home/build/workspace/game/Assets/scripts/ai/traits/Trait.cs:47)
+ModifierSet:CreateTrait (string,string,string,string,bool,ChoreGroup[],bool,bool,string[],string[]) (at /home/build/workspace/game/Assets/scripts/ai/modifiers/ModifierSet.cs:509)
+ModifierSet:CreateTrait (string,string,string,string,bool,ChoreGroup[],bool,bool) (at /home/build/workspace/game/Assets/scripts/ai/modifiers/ModifierSet.cs:504)
+EntityTemplates:ExtendEntityToBasicPlant (UnityEngine.GameObject,single,single,single,single,SimHashes[],bool,single,single,string,bool,bool,bool,bool,single,single,single,string,string) (at /home/build/workspace/game/Assets/scripts/Mods/EntityTemplates.cs:346)
+MycobrickMod.MycobrickShroomConfig:CreatePrefab ()
+EntityConfigManager:RegisterEntity (IEntityConfig,string[],string[]) (at /home/build/workspace/game/Assets/scripts/game/EntityConfigManager.cs:214)
+(wrapper dynamic-method) EntityConfigManager:EntityConfigManager.LoadGeneratedEntities_Patch2 (EntityConfigManager,System.Collections.Generic.List`1<System.Type>)
+LegacyModMain:LoadEntities (System.Collections.Generic.List`1<System.Type>) (at /home/build/workspace/game/Assets/scripts/Mods/LegacyModMain.cs:149)
+LegacyModMain:Load () (at /home/build/workspace/game/Assets/scripts/Mods/LegacyModMain.cs:28)
+Assets:CreatePrefabs () (at /home/build/workspace/game/Assets/scripts/game/Assets.cs:239)
+Assets:OnPrefabInit () (at /home/build/workspace/game/Assets/scripts/game/Assets.cs:209)
+KMonoBehaviour:InitializeComponent () (at /home/build/workspace/game/Assets/Plugins/Klei/util/KMonoBehaviour.cs:134)
+KMonoBehaviour:Awake () (at /home/build/workspace/game/Assets/Plugins/Klei/util/KMonoBehaviour.cs:46)
+UnityEngine.Object:Instantiate<UnityEngine.GameObject> (UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Transform)
+Util:KInstantiate (UnityEngine.GameObject,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.GameObject,string,bool,int) (at /home/build/workspace/game/Assets/Plugins/Klei/util/Util.cs:262)
+Util:KInstantiate (UnityEngine.GameObject,UnityEngine.GameObject,string) (at /home/build/workspace/game/Assets/Plugins/Klei/util/Util.cs:234)
+LaunchInitializer:Update () (at /home/build/workspace/game/Assets/scripts/game/LaunchInitializer.cs:88)
+
+Build: U56-672191-SCRP

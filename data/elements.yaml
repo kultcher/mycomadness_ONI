@@ -1,0 +1,39 @@
+elements:
+  - elementId: MycofiberElement  # Crucial: Must match MycofiberElement.ID
+    state: Solid
+    # Thermodynamics
+    specificHeatCapacity: 1.2    # J/(g*K) - Example, like Wood
+    thermalConductivity: 0.08  # W/(m*K) - Example, like Wood
+    #highTemp: 195.42
+    #highTempTransitionTarget: // if needed?
+    defaultTemperature: 172.15
+    solidSurfaceAreaMultiplier: 1
+    liquidSurfaceAreaMultiplier: 1
+    gasSurfaceAreaMultiplier: 1
+    # Radiation
+    lightAbsorptionFactor: 1
+    radiationAbsorptionFactor: 0.5
+    radiationPer1000Mass: 0
+    # Mass
+    defaultMass: 100
+    maxMass: 9970
+    molarMass: 107.86
+    # Gameplay Properties
+    hardness: 1                # Dig time (byte)
+    strength: 0.1              # Building HP multiplier
+    buildMenuSort: 151         # Order in material list (Sandstone is 100, WoodLog is 150)
+    materialCategory: BuildableRaw # Allows use in basic tile construction
+    tags:
+    isDisabled: false
+    localizationID: STRINGS.ELEMENTS.MYCOFIBERELEMENT.NAME
+    dlcId: ""
+    # Visuals (can also provide conduit color here if it were a pipe material)
+    # lowTemp: 273.15
+    # lowTempTransitionTarget: SomeOtherElementID
+    # highTemp: 673.15
+    # highTempTransitionTarget: Carbon # Example: Burns to carbon
+    # maxMass: 1840.0 # kg/m^3 - Density
+    # molarMass: 30.0 # g/mol - for chemical reactions, can be approximate
+    # tags: # Add gameplay tags here if not covered by materialCategory
+    #  - Organics
+    #  - BuildableProcessed # If it's a refined material for building

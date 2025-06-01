@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../ONI Source/Assembly-CSharp"
+		},
+		{
+			"path": "../ChemicalProcessingMod"
+		}
+	],
+	"settings": {
+		"omnisharp.useModernNet": false,
+		"omnisharp.projectLoadTimeout": 60
+	}
+}
