@@ -9,11 +9,14 @@ namespace MycobrickMod.Utils // Or your chosen namespace for utilities
         public static void RegisterElementStrings(string elementId, string name, string description)
         {
             string text = elementId.ToUpperInvariant(); // Use InvariantCulture for consistency
+            Debug.Log($"[MycobrickMod] ElementUtil.CreateRegisteredStrings: Registering element key {"STRINGS.ELEMENTS." + text + ".NAME"}: {elementId} with name {name} and description {description}");
             Strings.Add(new string[]
             {
                 "STRINGS.ELEMENTS." + text + ".NAME",
                 UI.FormatAsLink(name, text) // text here should be the elementId for the link
-            });
+                
+            }
+);
             Strings.Add(new string[]
             {
                 "STRINGS.ELEMENTS." + text + ".DESC",
@@ -34,12 +37,21 @@ namespace MycobrickMod.Utils // Or your chosen namespace for utilities
         public static Substance CreateRegisteredSubstance(string name, Element.State state, KAnimFile kanim, Material material, Color32 colour)
         {
             Substance substance = CreateSubstance(name, state, kanim, material, colour);
-            SimHashUtil.RegisterSimHash(name); 
-            AddSubstance(substance); // Adds to Assets.instance.substanceTable
-
-            // REMOVED THE PART THAT TRIES TO FIND ELEMENT AND LINK IT HERE
-            Debug.Log($"[MycobrickMod] ElementUtil.CreateRegisteredSubstance: Created and registered substance for {name} into Assets.substanceTable. Linking will occur in ElementLoader.Load.");
+            SimHashUtil.RegisterSimHash(name);
+            ElementUtil.AddSubstance(substance); // Adds to Assets.instance.substanceTable
+			ElementLoader.FindElementByHash(substance.elementID).substance = substance;
+            Debug.Log($"[MycobrickMod] ElementUtil.CreateRegisteredSubstance: Created and registered {substance.name} for {name} into Assets.substanceTable. Linking will occur in ElementLoader.Load.");
             return substance;
         }
+        
+        public static KAnimFile FindAnim(string name)
+		{
+			KAnimFile kanimFile = Assets.Anims.Find((KAnimFile anim) => anim.name == name);
+			if (kanimFile == null)
+			{
+				Debug.LogError("Failed to find KAnim: " + name);
+			}
+			return kanimFile;
+		}
     }
 }
