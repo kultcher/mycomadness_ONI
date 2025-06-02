@@ -35,7 +35,7 @@ namespace MycobrickMod
             pressure_sensitive: true,
             pressure_lethal_low: 0.025f,
             pressure_warning_low: 0.1f,
-            crop_id: MycofiberOreConfig.ID,
+            crop_id: "MycofiberOre",
             can_drown: false,
             can_tinker: false,
             require_solid_tile: true,
