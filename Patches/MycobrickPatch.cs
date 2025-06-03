@@ -4,6 +4,7 @@ using UnityEngine;
 using TUNING;
 using System.Collections.Generic;
 using MycobrickMod.Elements;
+using MycobrickMod.Recipes;
 
 namespace MycobrickMod.Patches
 {
@@ -23,8 +24,8 @@ namespace MycobrickMod.Patches
         public static void Prefix()
         {
             Debug.Log("[MycobrickMod] Registering Mycobrick Shroom...");
-            CROPS.CROP_TYPES.Add(new Crop.CropVal("MycofiberOre", 2700f, 300, true));
-
+            CROPS.CROP_TYPES.Add(new Crop.CropVal("MycofiberElement", 100f, 300, true));
+            KilnRecipes.AddMycobricksRecipe();
         }
     }
 }

@@ -23,5 +23,13 @@ namespace MycobrickMod
                 }
             }
         }
+
+        public class RECIPES
+        {
+            public class KILN_MYCOBRICK
+            {
+                public static LocString DESC = "Placeholder";
+            }
+        }
     }
 }

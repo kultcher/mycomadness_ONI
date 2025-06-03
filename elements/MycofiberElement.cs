@@ -8,7 +8,8 @@ namespace MycobrickMod.Elements
     {
         public const string ID = "MycofiberElement";
         public static readonly SimHashes MycofiberSimHash = (SimHashes)Hash.SDBMLower(ID);
-        public static readonly Color32 MYCOFIBER_COLOR = new Color32(180, 150, 110, 255); // A more distinct earthy/fungal color
+        //public static readonly Color32 MYCOFIBER_COLOR = new Color32(180, 150, 110, 255); // A more distinct earthy/fungal color
+        public static readonly Color32 MYCOFIBER_COLOR = new Color32(0, 0, 0, 0); // A more distinct earthy/fungal color
 
         // public static Substance RegisterMycofiberSubstance()
         // {
@@ -76,10 +77,11 @@ namespace MycobrickMod.Elements
             ElementUtil.CreateRegisteredSubstance(
               name: ID,
               state: Element.State.Solid,
-              kanim: ElementUtil.FindAnim("meteor_gold_kanim"),
+              kanim: ElementUtil.FindAnim("gas_tank_kanim"),
               material: CreateMycofiberMaterial(mycofiber.material),
               colour: MYCOFIBER_COLOR
             );
-        }
+
+         }
     }
 }

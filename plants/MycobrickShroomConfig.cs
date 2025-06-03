@@ -9,7 +9,6 @@ namespace MycobrickMod
     public class MycobrickShroomConfig : IEntityConfig, IHasDlcRestrictions
     {
         public const string ID = "MycobrickShroom";
-//test change
         public GameObject CreatePrefab()
         {
             string id = ID;
@@ -35,12 +34,12 @@ namespace MycobrickMod
             pressure_sensitive: true,
             pressure_lethal_low: 0.025f,
             pressure_warning_low: 0.1f,
-            crop_id: "MycofiberOre",
+            crop_id: "MycofiberElement",
             can_drown: false,
             can_tinker: false,
             require_solid_tile: true,
             should_grow_old: true, // leaving default, but can set explicitly if you want
-            max_age: 2 * 600f, // 1200 seconds = 2 cycles
+            max_age: 1200f, // 1200 seconds = 2 cycles
             min_radiation: 0f,
             max_radiation: 2200f,
             baseTraitId: "MycobrickShroom",

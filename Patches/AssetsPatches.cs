@@ -10,12 +10,13 @@ namespace MycobrickMod.Patches
         public static void Prefix()
         {
             ElementUtil.RegisterElementStrings("MycofiberElement", "Mycofiber", "A tough, fibrous material harvested from Mycobrick Shrooms. It's surprisingly versatile, though not very durable on its own.");
-
+            ElementUtil.RegisterElementStrings("MycobrickElement", "Mycobrick", "Tough, fire-resistant bricks made from processed Mycofiber. Excellent for construction.");
         }
         public static void Postfix()
         {
             Debug.Log("[MycobrickMod] Assets_SubstanceListHookup_Patch Postfix: Registering MycofiberElement substance into Assets.substanceTable.");
             MycofiberElement.RegisterMycofiberSubstance(); // This calls the modified ElementUtil.CreateRegisteredSubstance
+            MycobrickElement.RegisterMycobrickSubstance();
         }
     }
 }
