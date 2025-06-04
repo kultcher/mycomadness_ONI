@@ -10,16 +10,6 @@ namespace MycobrickMod.Elements
         public static readonly SimHashes MycobrickSimHash = (SimHashes)Hash.SDBMLower(ID);
         public static Color32 MYCOBRICK_COLOR = new Color32(160, 100, 80, 255); // Your reddish-brown
 
-        // public static Substance RegisterMycobrickSubstance()
-        // {
-        //     // Register UI strings for the element
-        //     ElementUtil.RegisterElementStrings(
-        //         ID,
-        //         "Mycobrick", // User-facing name
-        //         "A tough, fibrous material harvested from Mycobrick Shrooms. It's surprisingly versatile, though not very durable on its own." // User-facing description
-        //     );
-
-
 
         static Texture2D TintTextureMycobrickColor(Texture sourceTexture, string name)
         {
@@ -55,10 +45,11 @@ namespace MycobrickMod.Elements
             ElementUtil.CreateRegisteredSubstance(
               name: ID,
               state: Element.State.Solid,
-              kanim: ElementUtil.FindAnim("carbon_kanim"),
+              kanim: ElementUtil.FindAnim("fuel_brick_kanim"),
               material: CreateMycobrickMaterial(Assets.instance.substanceTable.GetSubstance(SimHashes.Ceramic).material),
               colour: MYCOBRICK_COLOR
             );
         }
+     
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO; // For Path.Combine
 using Klei; // For YamlIO
 using MycobrickMod.Elements; // To access MycofiberElement.ID
+using MycobrickMod.Utils;
 
 namespace MycobrickMod.Patches
 {
@@ -18,7 +19,7 @@ namespace MycobrickMod.Patches
             string modPath = null;
             foreach (KMod.Mod mod in Global.Instance.modManager.mods)
             {
-                if (mod.staticID == "MycobrickMod") 
+                if (mod.staticID == "MycobrickMod")
                 {
                     modPath = mod.ContentPath; //KMod.Mod.path should be the root directory of your mod
                     break;
@@ -48,7 +49,7 @@ namespace MycobrickMod.Patches
                 }
                 catch (System.Exception e)
                 {
-                     Debug.LogErrorFormat("[MycobrickMod] Exception while loading YAML file {0}: {1}", customElementsFilePath, e.ToString());
+                    Debug.LogErrorFormat("[MycobrickMod] Exception while loading YAML file {0}: {1}", customElementsFilePath, e.ToString());
                 }
 
 
@@ -63,11 +64,11 @@ namespace MycobrickMod.Patches
                 }
                 else if (errors.Count > 0)
                 {
-                     Debug.LogErrorFormat("[MycobrickMod] Failed to parse custom elements file {0} due to {1} YAML errors.", customElementsFilePath, errors.Count);
+                    Debug.LogErrorFormat("[MycobrickMod] Failed to parse custom elements file {0} due to {1} YAML errors.", customElementsFilePath, errors.Count);
                 }
                 else
                 {
-                     Debug.LogWarningFormat("[MycobrickMod] Custom elements file {0} was loaded but contained no elements or was malformed.", customElementsFilePath);
+                    Debug.LogWarningFormat("[MycobrickMod] Custom elements file {0} was loaded but contained no elements or was malformed.", customElementsFilePath);
                 }
                 errors.Recycle();
             }
@@ -75,6 +76,7 @@ namespace MycobrickMod.Patches
             {
                 Debug.LogWarning($"[MycobrickMod] Custom elements file not found at: {customElementsFilePath}");
             }
+
         }
     }
 }

@@ -39,19 +39,48 @@ namespace MycobrickMod.Utils // Or your chosen namespace for utilities
             Substance substance = CreateSubstance(name, state, kanim, material, colour);
             SimHashUtil.RegisterSimHash(name);
             ElementUtil.AddSubstance(substance); // Adds to Assets.instance.substanceTable
-			ElementLoader.FindElementByHash(substance.elementID).substance = substance;
-            Debug.Log($"[MycobrickMod] ElementUtil.CreateRegisteredSubstance: Created and registered {substance.name} for {name} into Assets.substanceTable. Linking will occur in ElementLoader.Load.");
+            ElementLoader.FindElementByHash(substance.elementID).substance = substance;
+            Debug.Log($"[MycobrickMod] ElementUtil.CreateRegisteredSubstance: Created and registered {substance.name} for {name} with animation: {substance.anim}.");
             return substance;
         }
-        
+
         public static KAnimFile FindAnim(string name)
-		{
-			KAnimFile kanimFile = Assets.Anims.Find((KAnimFile anim) => anim.name == name);
-			if (kanimFile == null)
-			{
-				Debug.LogError("Failed to find KAnim: " + name);
-			}
-			return kanimFile;
-		}
+        {
+            KAnimFile kanimFile = Assets.Anims.Find((KAnimFile anim) => anim.name == name);
+            if (kanimFile == null)
+            {
+                Debug.LogError("Failed to find KAnim: " + name);
+            }
+            return kanimFile;
+        }
+        
+        public static void UpdateElementPrefabAnim(Tag tag, Substance substance, string defaultSymbol = "object")
+        {
+            GameObject OrePrefab = Assets.GetPrefab(tag);
+
+            if (OrePrefab != null)
+            {
+                Debug.Log($"[MycobrickMod] CustomizeDefaultOrePrefabs: Found default ore prefab for '{tag}'. Customizing...");
+                KBatchedAnimController kbac = OrePrefab.GetComponent<KBatchedAnimController>();
+                if (kbac != null)
+                {
+                    KAnimFile baseAnim = substance.anim;
+
+                    if (baseAnim != null)
+                    {
+                        Debug.Log($"[MycobrickMod] Customized KBAC {kbac} for existing prefab '{tag}'.");
+
+                        //kbac.AnimFiles = new KAnimFile[] { baseAnim };
+                        kbac.initialAnim = "object"; // Or "ui"
+                        kbac.TintColour = substance.colour;
+                        var symbol = new KAnimHashedString("object");
+                        var tintColor = substance.colour;
+                        Debug.Log($"[MycobrickMod] Attempting to set symbol '{symbol}' and tint color '{tintColor}' for prefab '{tag}'.");
+
+                        //kbac.SetSymbolTint(symbol, tintColor);
+                    }
+                }
+            }
+        }
     }
 }

@@ -31,5 +31,18 @@ namespace MycobrickMod
                 public static LocString DESC = "Placeholder";
             }
         }
+
+        public class BUILDINGS
+        {
+            public class PREFABS
+            {
+                public class MYCOFIBERTILE
+                {
+                    public static LocString NAME = "Mycobfiber Tile";
+                    public static LocString DESC = "A soft tile made of squishy, fibrous Mycofiber. Quick to build, but fragile and tough to walk on.";
+                    public static LocString EFFECT = "A soft tile made of squishy, fibrous Mycofiber.";
+                }
+            }
+        }
     }
 }

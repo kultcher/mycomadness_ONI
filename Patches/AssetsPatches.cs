@@ -11,6 +11,7 @@ namespace MycobrickMod.Patches
         {
             ElementUtil.RegisterElementStrings("MycofiberElement", "Mycofiber", "A tough, fibrous material harvested from Mycobrick Shrooms. It's surprisingly versatile, though not very durable on its own.");
             ElementUtil.RegisterElementStrings("MycobrickElement", "Mycobrick", "Tough, fire-resistant bricks made from processed Mycofiber. Excellent for construction.");
+            Strings.Add("STRINGS.MISC.TAGS.MYCOFIBERELEMENT", "Mycofiber");     // not sure why this one isn't being added automatically?
         }
         public static void Postfix()
         {

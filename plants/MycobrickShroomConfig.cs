@@ -81,6 +81,8 @@ namespace MycobrickMod
                 width: 3,
                 height: 1
             );
+
+
             Debug.Log("[MycobrickMod] Inside CreatePrefab");
 
             return go;
@@ -102,8 +104,20 @@ namespace MycobrickMod
             return DlcManager.AVAILABLE_ALL_VERSIONS;
         }
 
-        public void OnPrefabInit(GameObject inst) { }
+        public void OnPrefabInit(GameObject inst)
+        {
+            var anim = inst.GetComponent<KBatchedAnimController>();
+            if (anim != null)
+            {
+                KAnimHashedString symbol = new KAnimHashedString("swap_crop01"); // or "drop", etc.
+                Color tintColor = new Color32(210, 255, 77, 255); // light greenish for Mycofiber
+                anim.SetSymbolTint(symbol, tintColor);
+                anim.SetSymbolScale(symbol, 1.8f);
+            }      
+        }
 
-        public void OnSpawn(GameObject inst) { }
+        public void OnSpawn(GameObject inst)
+        {
+        }
     }
 }

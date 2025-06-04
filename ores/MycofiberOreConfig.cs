@@ -19,5 +19,12 @@ namespace MycobrickMod
 
             return prefab;
         }
+
+        public void OnPrefabInit(GameObject inst) { }
+
+        public void OnSpawn(GameObject inst)
+        { 
+            Debug.Log("Spawning Mycofiber Ore");
+        }
     }
 }
