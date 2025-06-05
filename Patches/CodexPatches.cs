@@ -21,37 +21,40 @@ namespace MycobrickMod
         private static void CustomizeMycofiberEntry()
         {
             string simHashId = MycofiberElement.MycofiberSimHash.ToString();
-            string name = "Mycofiber";
-            string text = "MYCOFIBERELEMENT";
-            string final = UI.FormatAsLink(name, text);
             CodexEntry entry = CodexCache.FindEntry("MYCOFIBERELEMENT");
+
             Debug.Log($"[MycoCodexCustomizer] Set iconColor for Mycofiber (ID: {simHashId}) to ");
 
             if (entry != null)
             {
                 // 1. Set Icon Color
-                entry.iconColor = Elements.MycofiberElement.MYCOFIBER_COLOR;
-                var widget = entry.contentContainers[0]?.content[0] as CodexImage;
-                List<ContentContainer> list = entry.contentContainers;
-                foreach (ContentContainer item in list)
+                var icon_widget = entry.contentContainers[1]?.content[0] as CodexImage;
+                if (icon_widget != null)
                 {
-
-                    Debug.Log("Content Container: " + item.ToString() + " Content Count: " + item.content.Count + item.GetType().ToString());
-                    List<ICodexWidget> list2 = item.content;
-                    foreach (ICodexWidget item2 in list2)
-                    {
-                        if (item2 != null)
-                        {
-                            Debug.Log("Widget: " + item2.ToString() + " Widget Type: " + item2.GetType().ToString());
-                            if (item2 is CodexImage codexImage)
-                            {
-                                codexImage.color = Elements.MycofiberElement.MYCOFIBER_COLOR;
-                                Debug.Log($"[MycoCodexCustomizer] Set iconColor for Mycofiber (ID: {simHashId}) to {codexImage.color}");
-                            }
-                        }
-                    }
+                    icon_widget.color = Elements.MycofiberElement.MYCOFIBER_COLOR;
                 }
                 Debug.Log($"[MycoCodexCustomizer] Set iconColor for Mycofiber (ID: {simHashId}) to ");
+
+                // List<ContentContainer> list = entry.contentContainers;
+                // foreach (ContentContainer item in list)
+                // {
+
+                //     Debug.Log("Content Container: " + item.ToString() + " Content Count: " + item.content.Count + item.GetType().ToString());
+                //     List<ICodexWidget> list2 = item.content;
+                //     foreach (ICodexWidget item2 in list2)
+                //     {
+                //         if (item2 != null)
+                //         {
+                //             Debug.Log("Widget: " + item2.ToString() + " Widget Type: " + item2.GetType().ToString());
+                //             if (item2 is CodexImage codexImage)
+                //             {
+                //                 codexImage.color = Elements.MycofiberElement.MYCOFIBER_COLOR;
+                //                 Debug.Log($"[MycoCodexCustomizer] Set iconColor for Mycofiber (ID: {simHashId}) to {codexImage.color}");
+                //             }
+                //         }
+                //     }
+                // }
+                // Debug.Log($"[MycoCodexCustomizer] Set iconColor for Mycofiber (ID: {simHashId}) to ");
                 //<link="MYCOFIBERELEMENT">Mycofiber</link>
 
 
