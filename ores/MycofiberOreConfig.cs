@@ -1,30 +1,30 @@
-using System.Collections.Generic;
-using UnityEngine;
-using MycobrickMod.Elements;
+// using System.Collections.Generic;
+// using UnityEngine;
+// using MycobrickMod.Elements;
 
-namespace MycobrickMod
-{
-    // MycofiberOreConfig.cs
-    public class MycofiberOreConfig : IOreConfig
-    {
-        public const string ID = "MycofiberElement"; // Explicit string ID
-        public static readonly Tag MYCOFIBER_ORE_TAG = TagManager.Create(ID); // Create the tag ONCE
+// namespace MycobrickMod
+// {
+//     // MycofiberOreConfig.cs
+//     public class MycofiberOreConfig : IOreConfig
+//     {
+//         public const string ID = "MycofiberElement"; // Explicit string ID
+//         public static readonly Tag MYCOFIBER_ORE_TAG = TagManager.Create(ID); // Create the tag ONCE
 
-        public SimHashes ElementID => MycofiberElement.MycofiberSimHash;
+//         public SimHashes ElementID => MycofiberElement.MycofiberSimHash;
 
-        public GameObject CreatePrefab()
-        {
-            GameObject prefab = EntityTemplates.CreateSolidOreEntity(this.ElementID, null);
-            prefab.name = ID;
+//         public GameObject CreatePrefab()
+//         {
+//             GameObject prefab = EntityTemplates.CreateSolidOreEntity(this.ElementID, null);
+//             prefab.name = ID;
 
-            return prefab;
-        }
+//             return prefab;
+//         }
 
-        public void OnPrefabInit(GameObject inst) { }
+//         public void OnPrefabInit(GameObject inst) { }
 
-        public void OnSpawn(GameObject inst)
-        { 
-            Debug.Log("Spawning Mycofiber Ore");
-        }
-    }
-}
+//         public void OnSpawn(GameObject inst)
+//         { 
+//             Debug.Log("Spawning Mycofiber Ore");
+//         }
+//     }
+// }

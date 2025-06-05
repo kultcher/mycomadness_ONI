@@ -1,6 +1,10 @@
 using HarmonyLib;
 using STRINGS;
 using UnityEngine;
+using Klei;
+using System; // For Type
+using System.Collections.Generic;
+
 
 namespace MycobrickMod.Utils // Or your chosen namespace for utilities
 {
@@ -39,6 +43,8 @@ namespace MycobrickMod.Utils // Or your chosen namespace for utilities
             Substance substance = CreateSubstance(name, state, kanim, material, colour);
             SimHashUtil.RegisterSimHash(name);
             ElementUtil.AddSubstance(substance); // Adds to Assets.instance.substanceTable
+            Traverse.Create(substance).Field("anims").SetValue(new KAnimFile[] { kanim });
+
             ElementLoader.FindElementByHash(substance.elementID).substance = substance;
             Debug.Log($"[MycobrickMod] ElementUtil.CreateRegisteredSubstance: Created and registered {substance.name} for {name} with animation: {substance.anim}.");
             return substance;
@@ -53,7 +59,7 @@ namespace MycobrickMod.Utils // Or your chosen namespace for utilities
             }
             return kanimFile;
         }
-        
+
         public static void UpdateElementPrefabAnim(Tag tag, Substance substance, string defaultSymbol = "object")
         {
             GameObject OrePrefab = Assets.GetPrefab(tag);
@@ -65,22 +71,29 @@ namespace MycobrickMod.Utils // Or your chosen namespace for utilities
                 if (kbac != null)
                 {
                     KAnimFile baseAnim = substance.anim;
+                    kbac.TintColour = substance.colour;
+                    kbac.HighlightColour = substance.colour;
+                    kbac.OverlayColour = substance.colour;
+                    Debug.Log($"[MycobrickMod] kbac {kbac}");
 
                     if (baseAnim != null)
                     {
-                        Debug.Log($"[MycobrickMod] Customized KBAC {kbac} for existing prefab '{tag}'.");
+                        //Debug.Log($"[MycobrickMod] Customized KBAC {kbac} for existing prefab '{tag}'.");
 
-                        //kbac.AnimFiles = new KAnimFile[] { baseAnim };
-                        kbac.initialAnim = "object"; // Or "ui"
-                        kbac.TintColour = substance.colour;
-                        var symbol = new KAnimHashedString("object");
-                        var tintColor = substance.colour;
-                        Debug.Log($"[MycobrickMod] Attempting to set symbol '{symbol}' and tint color '{tintColor}' for prefab '{tag}'.");
-
+                        ////kbac.AnimFiles = new KAnimFile[] { baseAnim };
+                        //kbac.initialAnim = "object"; // Or "ui"
+                        //kbac.TintColour = substance.colour;
+                        //var symbol = new KAnimHashedString("object");
+                        //var tintColor = substance.colour;
+                        //Debug.Log($"[MycobrickMod] Attempting to set symbol '{symbol}' and tint color '{tintColor}' for prefab '{tag}'.");
                         //kbac.SetSymbolTint(symbol, tintColor);
                     }
                 }
             }
         }
+
+        // Suggested location: patches/CodexPatches.cs or a new file like Patches/CodexLinkerPatches.cs
+
+        
     }
 }

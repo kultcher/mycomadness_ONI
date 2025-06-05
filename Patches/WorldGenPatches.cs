@@ -89,7 +89,6 @@ namespace MycobrickMod.Patches
                     return;
                 }
 
-                Debug.Log("[MycobrickMod] SettingsCache_LoadSubworlds_Patch.Postfix: Adding custom plants to subworld biomes.");
                 foreach (SubWorld subworld in SettingsCache.subworlds.Values)
                 {
                     if (subworld.biomes == null) continue;
@@ -116,9 +115,11 @@ namespace MycobrickMod.Patches
                                     // biome.tags = new List<string>(); // This might be wrong if it's not a settable property
                                     // A safer way if it might be null and you can't directly assign new:
                                     var tagsList = Traverse.Create(biome).Property<List<string>>("tags").Value;
-                                    if (tagsList == null) {
+                                    if (tagsList == null)
+                                    {
                                         tagsList = new List<string>();
                                         Traverse.Create(biome).Property<List<string>>("tags").Value = tagsList;
+                                        Debug.Log("[MycobrickMod] SettingsCache_LoadSubworlds_Patch.Postfix: Adding custom plants to subworld biomes.");
                                     }
                                 }
 

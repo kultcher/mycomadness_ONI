@@ -32,14 +32,12 @@ namespace MycobrickMod.Patches
             CROPS.CROP_TYPES.Add(new Crop.CropVal("MycofiberElement", 100f, 300, true));
             KilnRecipes.AddMycobricksRecipe();
         }
-
         public static void Postfix()
-        {
-
-            ElementUtil.UpdateElementPrefabAnim(MycofiberElement.mycofiber_element_tag, MycofiberElement.substance);
-
-            Debug.Log("[MycobrickMod] Assets.OnAllAssetsLoaded Postfix: Customizing default ore prefabs...");
+        { 
+            Debug.Log("[MycobrickMod] Main patch postfix.");
+            //ElementUtil.UpdateElementPrefabAnim(MycofiberElement.MYCOFIBER_TAG, MycofiberElement.substance);
         }
+
     }
     
 }

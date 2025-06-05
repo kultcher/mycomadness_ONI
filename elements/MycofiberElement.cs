@@ -8,9 +8,13 @@ namespace MycobrickMod.Elements
     {
         public const string ID = "MycofiberElement";
         public static readonly SimHashes MycofiberSimHash = (SimHashes)Hash.SDBMLower(ID);
-        public static Tag mycofiber_element_tag = TagManager.Create(ID);
-        public static readonly Color32 MYCOFIBER_COLOR = new Color32(255, 255, 0, 255); // A more distinct earthy/fungal color
-        public static Substance substance;
+        //public static readonly Tag MYCOFIBER_TAG = MycofiberSimHash.CreateTag();
+
+        public static readonly Color32 MYCOFIBER_COLOR = new Color32(255, 0, 0, 255); // A more distinct earthy/fungal color
+        //public static readonly Color32 MYCOFIBER_COLOR = new Color32(180, 200, 60, 255); // A more distinct earthy/fungal color
+        //public static Tag MYCOFIBER_TAG = TagManager.Create(ID);
+        //public static Substance substance = new Substance();
+
         static Texture2D TintTextureMycofiberColor(Texture sourceTexture, string name)
         {
             Texture2D newTexture = TexUtil.DuplicateTexture(sourceTexture as Texture2D);
@@ -39,15 +43,15 @@ namespace MycobrickMod.Elements
 
         public static void RegisterMycofiberSubstance()
         {
-            Substance temp = Assets.instance.substanceTable.GetSubstance(SimHashes.SolidOxygen);
+            Material material = Assets.instance.substanceTable.GetSubstance(SimHashes.SolidMethane).material;
             Substance mycofiber = ElementUtil.CreateRegisteredSubstance(
               name: ID,
               state: Element.State.Solid,
-              kanim: ElementUtil.FindAnim("seed_saltplant_kanim"),
-              material: CreateMycofiberMaterial(temp.material),
+              kanim: ElementUtil.FindAnim("solid_methane_kanim"),
+              material: CreateMycofiberMaterial(material),
               colour: MYCOFIBER_COLOR
             );
-            substance = mycofiber;
+            Debug.Log("Registered MycofiberElement with ID: " + ID);
         }
     }
 }

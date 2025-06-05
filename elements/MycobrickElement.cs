@@ -8,7 +8,7 @@ namespace MycobrickMod.Elements
     {
         public const string ID = "MycobrickElement";
         public static readonly SimHashes MycobrickSimHash = (SimHashes)Hash.SDBMLower(ID);
-        public static Color32 MYCOBRICK_COLOR = new Color32(160, 100, 80, 255); // Your reddish-brown
+        public static Color32 MYCOBRICK_COLOR = new Color32(0, 0, 255, 255); // Your reddish-brown
 
 
         static Texture2D TintTextureMycobrickColor(Texture sourceTexture, string name)
@@ -40,13 +40,13 @@ namespace MycobrickMod.Elements
 
         public static void RegisterMycobrickSubstance()
         {
-            Substance mycobrick = Assets.instance.substanceTable.GetSubstance(SimHashes.SolidOxygen);
+            Material material = Assets.instance.substanceTable.GetSubstance(SimHashes.SolidOxygen).material;
 
             ElementUtil.CreateRegisteredSubstance(
               name: ID,
               state: Element.State.Solid,
-              kanim: ElementUtil.FindAnim("fuel_brick_kanim"),
-              material: CreateMycobrickMaterial(Assets.instance.substanceTable.GetSubstance(SimHashes.Ceramic).material),
+              kanim: ElementUtil.FindAnim("cinnabar_kanim"),
+              material: CreateMycobrickMaterial(material),
               colour: MYCOBRICK_COLOR
             );
         }

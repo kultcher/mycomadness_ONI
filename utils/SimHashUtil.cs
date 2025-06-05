@@ -13,24 +13,28 @@ namespace MycobrickMod.Utils
         public static void RegisterSimHash(string name)
         {
             SimHashes simHash = (SimHashes)Hash.SDBMLower(name);
-            if (!SimHashNameLookup.ContainsKey(simHash))
-            {
-                SimHashNameLookup.Add(simHash, name);
-            }
-            else
-            {
-                Debug.LogWarning($"[MycobrickMod] SimHashUtil.RegisterSimHash: SimHash for '{name}' already registered in SimHashNameLookup.");
-            }
-
-            if (!ReverseSimHashNameLookup.ContainsKey(name))
-            {
-                ReverseSimHashNameLookup.Add(name, simHash);
-            }
-            else
-            {
-                Debug.LogWarning($"[MycobrickMod] SimHashUtil.RegisterSimHash: Name '{name}' already registered in ReverseSimHashNameLookup.");
-            }
+            SimHashNameLookup.Add(simHash, name);
+            ReverseSimHashNameLookup.Add(name, simHash);
         }
     }
-    // ... rest of the file (Harmony patches for Enum.ToString/Parse)
+
+    [HarmonyPatch(typeof(Enum), "ToString", new Type[] { })]
+    class SimHashes_ToString
+    {
+        static bool Prefix(ref Enum __instance, ref string __result)
+        {
+            if (!(__instance is SimHashes)) return true;
+            return !SimHashUtil.SimHashNameLookup.TryGetValue((SimHashes)__instance, out __result);
+        }
+    }
+
+    [HarmonyPatch(typeof(Enum), nameof(Enum.Parse), new Type[] { typeof(Type), typeof(string), typeof(bool) })]
+    class SimHashes_Parse
+    {
+        static bool Prefix(Type enumType, string value, ref object __result)
+        {
+            if (!enumType.Equals(typeof(SimHashes))) return true;
+            return !SimHashUtil.ReverseSimHashNameLookup.TryGetValue(value, out __result);
+        }
+    }
 }

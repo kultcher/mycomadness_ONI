@@ -22,7 +22,7 @@ elements:
     hardness: 1                # Dig time (byte)
     strength: 0.5              # Building HP multiplier
     buildMenuSort: 151         # Order in material list (Sandstone is 100, WoodLog is 150)
-    materialCategory: Compostable 
+    materialCategory: Organics
     isDisabled: false
     localizationID: STRINGS.ELEMENTS.MYCOFIBERELEMENT.NAME
     dlcId: ""
@@ -31,7 +31,8 @@ elements:
     # lowTempTransitionTarget: SomeOtherElementID
     # highTemp: 673.15
     # highTempTransitionTarget: Carbon # Example: Burns to carbon
-    tags: # Add gameplay tags here if not covered by materialCategory
+    tags:
+      - Compostable
     #  - BuildableProcessed # If it's a refined material for building
 
   - elementId: MycobrickElement  # Crucial: Must match MycofiberElement.ID
