@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using MycobrickMod.Elements;
 using MycobrickMod.Recipes;
 using MycobrickMod.Utils;
+using STRINGS;
 
 namespace MycobrickMod.Patches
 {
@@ -15,11 +16,10 @@ namespace MycobrickMod.Patches
         {
             base.OnLoad(harmony);
             Debug.Log("[MycobrickMod] Patching...");
-            //harmony.PatchAll();
             foreach (var patch in Harmony.GetAllPatchedMethods())
-{
-            Debug.Log("Patched method: " + patch.FullDescription());
-}
+            {
+                Debug.Log("Patched method: " + patch.FullDescription());
+            }
         }
     }
 
@@ -28,16 +28,18 @@ namespace MycobrickMod.Patches
     {
         public static void Prefix()
         {
-            Debug.Log("[MycobrickMod] Registering Mycobrick Shroom...");
+            Debug.Log("[MycobrickMod] Registering Mycobrick Shroom and items...");
             CROPS.CROP_TYPES.Add(new Crop.CropVal("MycofiberElement", 100f, 300, true));
-            KilnRecipes.AddMycobricksRecipe();
+            MycobrickRecipe.AddMycobricksRecipe();
+            MycoweaveStrandsRecipe.AddMycoweaveStrandsRecipe();
+            // Register MycoweaveStrands entity
+            Debug.Log("[MycobrickMod] Registering Mycoweave Strands...");
+            new MycoweaveStrandsConfig().CreatePrefab();
+
         }
         public static void Postfix()
         { 
             Debug.Log("[MycobrickMod] Main patch postfix.");
-            //ElementUtil.UpdateElementPrefabAnim(MycofiberElement.MYCOFIBER_TAG, MycofiberElement.substance);
         }
-
     }
-    
 }

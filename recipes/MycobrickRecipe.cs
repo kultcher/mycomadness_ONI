@@ -10,7 +10,7 @@ using MycobrickMod.Utils;
 
 namespace MycobrickMod.Recipes
 {
-    public static class KilnRecipes
+    public static class MycobrickRecipe
     {
         public const string MycofiberToMycobricksRecipeId = "MycofiberToMycobricks";
 
@@ -22,22 +22,18 @@ namespace MycobrickMod.Recipes
                 new ComplexRecipe.RecipeElement(MycofiberElement.ID, 50f) // Use string ID of Mycofiber
             };
 
-            // Define the output: 5 units of Mycobricks
-            // The quantity here (5f) can represent 5kg if each "brick" is 1kg,
-            // or 5 individual items if Mycobricks element is defined with a mass per unit.
-            // Assuming 5 individual bricks, and each brick has a certain mass defined in its element.
             ComplexRecipe.RecipeElement[] outputs = new ComplexRecipe.RecipeElement[]
             {
-                new ComplexRecipe.RecipeElement(MycobrickElement.ID, 5f) // Use string ID of Mycobricks
+                new ComplexRecipe.RecipeElement(MycobrickElement.ID, 100f) // Use string ID of Mycobricks
             };
 
             // Recipe Time (example: medium duration)
             // float time = TUNING.BUILDINGS.FABRICATION_TIME.MEDIUM_FABRICATION_TIME; // Example: 40s
             // Using a hardcoded value for now if TUNING isn't fully available or for simplicity.
-            float time = 50f; // As per subtask description
+            float time = TUNING.BUILDINGS.FABRICATION_TIME_SECONDS.VERY_SHORT;
 
             // Description for the recipe UI
-            string description = STRINGS.RECIPES.KILN_MYCOBRICK.DESC;
+            string description = STRINGS.BUILDINGS.PREFABS.KILN.MYCOBRICK_RECIPE_DESC;
 
             // Create the recipe details object
             var recipe = new ComplexRecipe(
@@ -59,8 +55,6 @@ namespace MycobrickMod.Recipes
 
             //ComplexRecipeManager.Get().Add(recipe);
             Debug.Log($"MycoMod: Added recipe '{recipe.id}' - {MycobrickElement.ID} to {MycobrickElement.ID} in Kiln.");
-
-
         }
     }
 }

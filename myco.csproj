@@ -58,6 +58,11 @@
   <DataYamlFiles Include="data\*.yaml" />
 </ItemGroup>
 
+<ItemGroup>
+  <CodexYamlFiles Include="codex\**\*" />
+</ItemGroup>
+
+
 <Target Name="PreBuild" BeforeTargets="Build">
   <RemoveDir Directories="$(OniModsPath)" />
 </Target>
@@ -69,6 +74,9 @@
         DestinationFolder="$(OniModsPath)" />
   <Copy SourceFiles="@(DataYamlFiles)"
         DestinationFolder="$(OniModsPath)\data" />
+  <Copy SourceFiles="@(CodexYamlFiles)"
+        DestinationFolder="$(OniModsPath)\codex\%(RecursiveDir)" />
+
 
 </Target>
 

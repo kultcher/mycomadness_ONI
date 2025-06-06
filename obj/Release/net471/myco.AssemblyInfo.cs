@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MycobrickMod")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+62ffb8985dd9148e9a3bb9de26028e9814b43275")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+62cce8ee9d710497c7606975f9491aa844b5068b")]
 [assembly: System.Reflection.AssemblyProductAttribute("MycobrickMod")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MycobrickMod")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

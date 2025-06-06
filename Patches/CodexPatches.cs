@@ -1,88 +1,159 @@
 using HarmonyLib;
-using STRINGS;
-using UnityEngine;
+
 using Klei; // For Tag
 using System; // For Type
 using System.Collections.Generic;
-using MycobrickMod.Elements;
-using UnityEngine.UI; // For MycofiberElement and MycobrickElement
+
+using System.IO;
+
 
 namespace MycobrickMod
 {
-    [HarmonyPatch(typeof(CodexEntryGenerator_Elements), "GenerateEntries")]
-    public static class CodexEntryGenerator_Elements_Postfix_MycoCustomization_Patch
+    [HarmonyPatch(typeof(Db), "Initialize")]
+    public static class Db_Initialize_Patch
     {
-        public static void Postfix() // We don't need __result
+        public static void Postfix()
         {
-            CustomizeMycofiberEntry();
-            // Call customization for other elements if you add more
-        }
-
-        private static void CustomizeMycofiberEntry()
-        {
-            string simHashId = MycofiberElement.MycofiberSimHash.ToString();
-            CodexEntry entry = CodexCache.FindEntry("MYCOFIBERELEMENT");
-
-            Debug.Log($"[MycoCodexCustomizer] Set iconColor for Mycofiber (ID: {simHashId}) to ");
-
-            if (entry != null)
-            {
-                // 1. Set Icon Color
-                var icon_widget = entry.contentContainers[1]?.content[0] as CodexImage;
-                if (icon_widget != null)
-                {
-                    icon_widget.color = Elements.MycofiberElement.MYCOFIBER_COLOR;
-                }
-                Debug.Log($"[MycoCodexCustomizer] Set iconColor for Mycofiber (ID: {simHashId}) to ");
-
-                // List<ContentContainer> list = entry.contentContainers;
-                // foreach (ContentContainer item in list)
-                // {
-
-                //     Debug.Log("Content Container: " + item.ToString() + " Content Count: " + item.content.Count + item.GetType().ToString());
-                //     List<ICodexWidget> list2 = item.content;
-                //     foreach (ICodexWidget item2 in list2)
-                //     {
-                //         if (item2 != null)
-                //         {
-                //             Debug.Log("Widget: " + item2.ToString() + " Widget Type: " + item2.GetType().ToString());
-                //             if (item2 is CodexImage codexImage)
-                //             {
-                //                 codexImage.color = Elements.MycofiberElement.MYCOFIBER_COLOR;
-                //                 Debug.Log($"[MycoCodexCustomizer] Set iconColor for Mycofiber (ID: {simHashId}) to {codexImage.color}");
-                //             }
-                //         }
-                //     }
-                // }
-                // Debug.Log($"[MycoCodexCustomizer] Set iconColor for Mycofiber (ID: {simHashId}) to ");
-                //<link="MYCOFIBERELEMENT">Mycofiber</link>
-
-
-
-                // 3. (Optional) Modify other properties or add/remove content containers
-                // For example, if you wanted to ensure a specific main image with the right color:
-                // if (entry.contentContainers != null && entry.contentContainers.Count > 0 &&
-                //     entry.contentContainers[0]?.content != null && entry.contentContainers[0].content.Count > 0 &&
-                //     entry.contentContainers[0].content[0] is CodexImage imageWidget)
-                // {
-                //     if (imageWidget.sprite == entry.icon) // If the first image is the main icon
-                //     {
-                //         imageWidget.color = Elements.MycofiberElement.MYCOFIBER_COLOR;
-                //         Debug.Log($"[MycoCodexCustomizer] Set color for first CodexImage widget for Mycofiber to {imageWidget.color}");
-                //     }
-                // }
-                // else // Or, if no image container exists or it's not what you want, create/replace it:
-                // {
-                //     // This part is more involved: you'd need to create a new ContentContainer 
-                //     // with a new CodexImage configured with your sprite and color,
-                //     // and then decide whether to prepend it, replace an existing one, or append it.
-                //     // For just color, entry.iconColor should be sufficient if the UI uses it.
-                // }
-            }
-            else
-            {
-                Debug.LogWarning($"[MycoCodexCustomizer] Could not find CodexEntry for Mycofiber (ID: {simHashId}) to customize.");
-            }
+            MycoweaveStrandsConfig.RegisterStrings();
         }
     }
+
+    [HarmonyPatch(typeof(CodexScreen), "ChangeArticle")]
+    public static class ChangeArticle_Debuf
+    {
+        public static void Prefix(string id) // We don't need __result
+        {
+            Debug.Log($"[MycoCodexCustomizer] ChangeArticle called with id: {id}");
+            // Call customization for other elements if you add more
+        }
+    }
+
+    [HarmonyPatch(typeof(CodexCache), "CollectYAMLEntries")]
+    public static class CodexCache_CollectYAMLEntries_Patch
+    {
+        public static void Postfix(List<CategoryEntry> categories)
+        {
+            CollectModYAMLEntries(categories);
+        }
+
+        private static void CollectModYAMLEntries(List<CategoryEntry> categories)
+        {
+            // Get all loaded mods
+            Debug.Log($"[CodexCache] Getting mods...");
+
+
+            var modManager = Global.Instance.modManager;
+            if (modManager?.mods == null) return;
+
+            Debug.Log($"[CodexCache] Found mod...");
+
+
+            foreach (var mod in modManager.mods)
+            {
+                //if (!mod.IsEnabledForActiveDlc()) continue;
+
+                string modCodexPath = Path.Combine(mod.ContentPath, "codex");
+                Debug.Log($"[CodexCache] Searching {mod.ContentPath}...");
+
+                if (!Directory.Exists(modCodexPath)) continue;
+
+                Debug.Log($"[CodexCache] Scanning mod codex directory: {modCodexPath}");
+
+                // Collect entries from subdirectories
+                foreach (string directory in Directory.GetDirectories(modCodexPath))
+                {
+                    string categoryName = Path.GetFileNameWithoutExtension(directory);
+                    List<CodexEntry> categoryEntries = CollectModEntries(modCodexPath, categoryName);
+                    Debug.Log($"[CodexCache] Found codex entries in {directory}: {categoryEntries.Count}");
+
+                    foreach (CodexEntry entry in categoryEntries)
+                    {
+                        if (entry?.id == null || entry.contentContainers == null || !Game.IsCorrectDlcActiveForCurrentSave(entry))
+                            continue;
+                        Debug.Log($"[CodexCache] Looking at codex entry: {entry.id}");
+
+                        string formattedId = CodexCache.FormatLinkID(entry.id);
+                        if (CodexCache.entries.ContainsKey(formattedId))
+                        {
+                            var mergeMethod = typeof(CodexCache).GetMethod("MergeEntry",
+                                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+                            mergeMethod?.Invoke(null, new object[] { entry.id, entry });
+                        }
+                        else
+                        {
+                            CodexCache.AddEntry(entry.id, entry, categories);
+                            entry.customContentLength = entry.contentContainers.Count;
+                        }
+                    }
+                }
+            }
+        }
+
+        private static List<CodexEntry> CollectModEntries(string basePath, string folder)
+        {
+            List<CodexEntry> assets = new List<CodexEntry>();
+            string fullFolderPath = string.IsNullOrEmpty(folder) ? basePath : Path.Combine(basePath, folder);
+            
+            if (!Directory.Exists(fullFolderPath)) return assets;
+
+            string[] filePaths;
+            try
+            {
+                filePaths = Directory.GetFiles(fullFolderPath, "*.yaml");
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                Debug.LogWarning($"[CodexCache] Access denied to {fullFolderPath}: {e}");
+                return assets;
+            }
+
+            string category = folder.ToUpper();
+            
+            // Get widget tag mappings using reflection
+            var widgetTagMappingsField = typeof(CodexCache).GetField("widgetTagMappings", 
+                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+            var widgetTagMappings = widgetTagMappingsField?.GetValue(null) as List<global::Tuple<string, Type>>;
+
+            foreach (string path in filePaths)
+            {
+                // Skip sub-entries (they're handled separately)
+                if (Path.GetFileName(path).Contains("SubEntry")) continue;
+
+                try
+                {
+                    // Use reflection to call private YamlParseErrorCB method
+                    var yamlErrorMethod = typeof(CodexCache).GetMethod("YamlParseErrorCB", 
+                        System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+                    var errorHandler = yamlErrorMethod != null ? 
+                        (YamlIO.ErrorHandler)Delegate.CreateDelegate(typeof(YamlIO.ErrorHandler), yamlErrorMethod) : null;
+
+                    CodexEntry asset = YamlIO.LoadFile<CodexEntry>(path, errorHandler, widgetTagMappings);
+                    if (asset != null)
+                    {
+                        asset.category = category;
+                        assets.Add(asset);
+                        Debug.Log($"[CodexCache] Loaded mod codex entry: {asset.id} from {path}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError($"[CodexCache] Failed to load mod codex entry from {path}: {ex}");
+                }
+            }
+
+            // Sort entries
+            foreach (CodexEntry asset in assets)
+            {
+                if (string.IsNullOrEmpty(asset.sortString))
+                {
+                    asset.sortString = Strings.Get(asset.title);
+                }
+            }
+            assets.Sort((x, y) => x.sortString.CompareTo(y.sortString));
+
+            return assets;
+        }
+    }
+
+
 }
