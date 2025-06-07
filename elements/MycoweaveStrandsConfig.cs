@@ -53,8 +53,6 @@ namespace MycobrickMod
 
         public void OnSpawn(GameObject inst){}
 
-
-
         public static void RegisterStrings()
         {
                 // Register MycoweaveStrands in the global strings

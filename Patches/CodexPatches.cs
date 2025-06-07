@@ -9,15 +9,6 @@ using System.IO;
 
 namespace MycobrickMod
 {
-    [HarmonyPatch(typeof(Db), "Initialize")]
-    public static class Db_Initialize_Patch
-    {
-        public static void Postfix()
-        {
-            MycoweaveStrandsConfig.RegisterStrings();
-        }
-    }
-
     [HarmonyPatch(typeof(CodexScreen), "ChangeArticle")]
     public static class ChangeArticle_Debuf
     {

@@ -1,0 +1,1 @@
+- Element special properties Tags showing up on recipe display

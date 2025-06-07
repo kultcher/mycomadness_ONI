@@ -23,6 +23,20 @@ namespace MycobrickMod.Patches
         }
     }
 
+    [HarmonyPatch(typeof(Db), "Initialize")]
+    public static class Db_Initialize_Patch
+    {
+        public static void Postfix()
+        {
+            MycoweaveStrandsConfig.RegisterStrings();
+            MycoweaveLungsuitConfig.RegisterStrings();
+            
+            MycobrickRecipe.AddMycobricksRecipe();
+            MycoweaveStrandsRecipe.AddMycoweaveStrandsRecipe();
+
+        }
+    }
+
     [HarmonyPatch(typeof(EntityConfigManager), "LoadGeneratedEntities")]
     public static class MycobrickShroomLoadPatch
     {
@@ -30,10 +44,6 @@ namespace MycobrickMod.Patches
         {
             Debug.Log("[MycobrickMod] Registering Mycobrick Shroom and items...");
             CROPS.CROP_TYPES.Add(new Crop.CropVal("MycofiberElement", 100f, 300, true));
-            MycobrickRecipe.AddMycobricksRecipe();
-            MycoweaveStrandsRecipe.AddMycoweaveStrandsRecipe();
-            // Register MycoweaveStrands entity
-            Debug.Log("[MycobrickMod] Registering Mycoweave Strands...");
             new MycoweaveStrandsConfig().CreatePrefab();
 
         }

@@ -63,16 +63,10 @@ namespace MycobrickMod
         {
             public class MYCOWEAVESTRANDS
             {
-                // Token: 0x04009C06 RID: 39942
                 public static LocString TITLE = "Mycoweave Strands";
-
-                // Token: 0x04009C07 RID: 39943
                 public static LocString SUBTITLE = "Textile Ingredient";
-
-                // Token: 0x02002B88 RID: 11144
                 public class BODY
                 {
-                    // Token: 0x0400BFB2 RID: 49074
                     public static LocString CONTAINER1 = string.Concat(new string[]
                     {
                             "A cleaned and processed bundle of Mycofiber from the ",
@@ -81,6 +75,20 @@ namespace MycobrickMod
                             UI.FormatAsLink("Clothing", "EQUIPMENT"),
                             " and textiles."
                     });
+                }
+            }
+        }
+
+        public class EQUIPMENT
+        {
+            public class PREFABS
+            {
+                public class MYCOWEAVE_LUNGSUIT
+                {
+                    public static LocString NAME = "Mycoweave Lungsuit";
+                    public static LocString DESC = "A lightweight vest woven from Mycoweave Strands that enhances respiratory efficiency.";
+                    public static LocString RECIPE_DESC = "Create a durable vest from Mycoweave Strands.";
+                    public static LocString EFFECT = "Placeholder";
                 }
             }
         }

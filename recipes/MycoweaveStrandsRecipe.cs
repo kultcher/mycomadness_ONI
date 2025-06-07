@@ -29,7 +29,7 @@ namespace MycobrickMod.Recipes
                 new ComplexRecipe.RecipeElement(TagManager.Create(MycoweaveStrandsConfig.ID), mycoweaveOutput, ComplexRecipe.RecipeElement.TemperatureOperation.AverageTemperature, false),
                 new ComplexRecipe.RecipeElement(SimHashes.DirtyWater.CreateTag(), pollutedWaterOutput, ComplexRecipe.RecipeElement.TemperatureOperation.AverageTemperature, true)            };
 
-            float time = TUNING.BUILDINGS.FABRICATION_TIME_SECONDS.SHORT;
+            float time = TUNING.BUILDINGS.FABRICATION_TIME_SECONDS.VERY_SHORT;
 
             string mycoRecipeId = ComplexRecipeManager.MakeRecipeID(SludgePressConfig.ID, mycoweaveRecipeInputs, mycoweaveRecipeOutputs);
             
