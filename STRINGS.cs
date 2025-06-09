@@ -11,7 +11,13 @@ namespace MycobrickMod
                 public class MYCOWEAVESTRANDS
                 {
                     public static LocString NAME = UI.FormatAsLink("Mycoweave Strands", "MYCOWEAVESTRANDS");
-                    public static LocString DESC = "Treated and processed Mycofiber strands that can be woven into durable fabrics and construction materials.";
+                    public static LocString DESC = "The first stage of Mycofiber processing involves introducing a binding agent before violently removing impurities.";
+                }
+    
+                public class MYCOWEAVEMATTING
+                {
+                    public static LocString NAME = UI.FormatAsLink("Mycoweave Matting", "MYCOWEAVEMATTING");
+                    public static LocString DESC = "Further processing and disinfection renders Mycofiber strands into a flexible and functional textile.";
                 }
             }
         }
@@ -72,6 +78,22 @@ namespace MycobrickMod
                             "A cleaned and processed bundle of Mycofiber from the ",
                             UI.FormatAsLink("Mycobrick Shroom", "MYCOBRICKSHROOM"),
                             ".\n\nIt is used in the production of ",
+                            UI.FormatAsLink("Clothing", "EQUIPMENT"),
+                            " and textiles."
+                    });
+                }
+            }
+            public class MYCOWEAVEMATTING
+            {
+                public static LocString TITLE = "Mycoweave Matting";
+                public static LocString SUBTITLE = "Textile Ingredient";
+                public class BODY
+                {
+                    public static LocString CONTAINER1 = string.Concat(new string[]
+                    {
+                            "Further processed of Mycoweave strands from the ",
+                            UI.FormatAsLink("Mycobrick Shroom", "MYCOBRICKSHROOM"),
+                            " render them into a flexible textile.\n\nIt is used in the production of ",
                             UI.FormatAsLink("Clothing", "EQUIPMENT"),
                             " and textiles."
                     });

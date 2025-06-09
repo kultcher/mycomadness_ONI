@@ -32,13 +32,12 @@ namespace MycobrickMod.Recipes
             float time = TUNING.BUILDINGS.FABRICATION_TIME_SECONDS.VERY_SHORT;
 
             string mycoRecipeId = ComplexRecipeManager.MakeRecipeID(SludgePressConfig.ID, mycoweaveRecipeInputs, mycoweaveRecipeOutputs);
-            
+
             ComplexRecipe mycoRecipe = new ComplexRecipe(mycoRecipeId, mycoweaveRecipeInputs, mycoweaveRecipeOutputs);
             mycoRecipe.time = time;
             mycoRecipe.description = MycobrickMod.STRINGS.BUILDINGS.PREFABS.SLUDGEPRESS.MYCOWEAVE_RECIPE_DESC;
             mycoRecipe.nameDisplay = ComplexRecipe.RecipeNameDisplay.Result;
             mycoRecipe.fabricators = new List<Tag> { TagManager.Create("SludgePress") };
-
         }
     }
 }

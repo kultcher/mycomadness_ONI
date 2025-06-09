@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Klei.AI;
+using MycobrickMod.Elements;
 using STRINGS;
 using TUNING;
 using UnityEngine;
@@ -47,7 +48,7 @@ namespace MycobrickMod
             EquipmentDef def = EquipmentTemplates.CreateEquipmentDef(
                 Id: "Mycoweave_Lungsuit",
                 Slot: TUNING.EQUIPMENT.CLOTHING.SLOT,
-                OutputElement: SimHashes.Carbon,
+                OutputElement: MycofiberElement.MycofiberSimHash,
                 Mass: MYCOWEAVE_LUNGSUIT_MASS,
                 Anim: /*placeholder*/TUNING.EQUIPMENT.VESTS.WARM_VEST_ICON0,
                 SnapOn: TUNING.EQUIPMENT.VESTS.SNAPON0,
@@ -91,7 +92,6 @@ namespace MycobrickMod
             return def;
         }
 
-        // Token: 0x060002BE RID: 702 RVA: 0x00015B94 File Offset: 0x00013D94
         public static void SetupVest(GameObject go)
         {
             go.GetComponent<KPrefabID>().AddTag(GameTags.Clothes, false);

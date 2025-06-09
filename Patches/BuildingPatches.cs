@@ -7,7 +7,7 @@ using MycobrickMod.Buildings;
 namespace MycobrickMod
 {
     [HarmonyPatch(typeof(GeneratedBuildings), "LoadGeneratedBuildings")]
-    internal class AdvancedKilnUI
+    internal class ConfigureBuildings
     {
         private static void Prefix()
         {

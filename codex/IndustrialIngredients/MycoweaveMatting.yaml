@@ -1,0 +1,32 @@
+id: "MycoweaveMatting"
+title: STRINGS.CODEX.MYCOWEAVEMATTING.TITLE
+
+contentContainers:
+#-----------------------------
+  - contentLayout: Vertical
+    lockID:
+
+    content:
+      - !CodexText
+          stringKey: STRINGS.CODEX.MYCOWEAVEMATTING.TITLE
+          style: Title
+      - !CodexText
+          stringKey: STRINGS.CODEX.MYCOWEAVEMATTING.SUBTITLE
+          style: Subtitle
+      - !CodexDividerLine
+          preferredWidth: -1
+      - !CodexImage
+          batchedAnimPrefabSourceID: BASICFABRIC
+          preferredWidth: 128
+          preferredHeight: 128
+#-----------------------------
+  - contentLayout: Vertical
+    lockID:
+
+    content:
+      - !CodexText
+          stringKey: STRINGS.CODEX.MYCOWEAVEMATTING.BODY.CONTAINER1
+          style: Body
+
+contentMadeAndUsed:
+  - tag: MycoweaveMatting

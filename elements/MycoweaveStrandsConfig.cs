@@ -40,7 +40,6 @@ namespace MycobrickMod
             new List<Tag>
             {
                 GameTags.IndustrialIngredient,
-                GameTags.BuildingFiber
             });
 
             prefab.AddOrGet<EntitySplitter>();
@@ -49,21 +48,21 @@ namespace MycobrickMod
             return prefab;
         }
 
-        public void OnPrefabInit(GameObject inst){}
+        public void OnPrefabInit(GameObject inst) { }
 
-        public void OnSpawn(GameObject inst){}
+        public void OnSpawn(GameObject inst) { }
 
         public static void RegisterStrings()
         {
-                // Register MycoweaveStrands in the global strings
-                string id = MycoweaveStrandsConfig.ID.ToUpperInvariant();
+            // Register MycoweaveStrands in the global strings
+            string id = MycoweaveStrandsConfig.ID.ToUpperInvariant();
 
-                // These strings are what the Codex system uses to auto-generate entries
-                Strings.Add($"STRINGS.ITEMS.INDUSTRIAL_PRODUCTS.{id}.NAME", STRINGS.ITEMS.INDUSTRIAL_PRODUCTS.MYCOWEAVESTRANDS.NAME);
-                Strings.Add($"STRINGS.ITEMS.INDUSTRIAL_PRODUCTS.{id}.DESC", STRINGS.ITEMS.INDUSTRIAL_PRODUCTS.MYCOWEAVESTRANDS.DESC);
-                Strings.Add($"STRINGS.CODEX.{id}.TITLE", STRINGS.CODEX.MYCOWEAVESTRANDS.TITLE);
-                Strings.Add($"STRINGS.CODEX.{id}.SUBTITLE", STRINGS.CODEX.MYCOWEAVESTRANDS.SUBTITLE);
-                Strings.Add($"STRINGS.CODEX.{id}.BODY.CONTAINER1", STRINGS.CODEX.MYCOWEAVESTRANDS.BODY.CONTAINER1);
+            // These strings are what the Codex system uses to auto-generate entries
+            Strings.Add($"STRINGS.ITEMS.INDUSTRIAL_PRODUCTS.{id}.NAME", STRINGS.ITEMS.INDUSTRIAL_PRODUCTS.MYCOWEAVESTRANDS.NAME);
+            Strings.Add($"STRINGS.ITEMS.INDUSTRIAL_PRODUCTS.{id}.DESC", STRINGS.ITEMS.INDUSTRIAL_PRODUCTS.MYCOWEAVESTRANDS.DESC);
+            Strings.Add($"STRINGS.CODEX.{id}.TITLE", STRINGS.CODEX.MYCOWEAVESTRANDS.TITLE);
+            Strings.Add($"STRINGS.CODEX.{id}.SUBTITLE", STRINGS.CODEX.MYCOWEAVESTRANDS.SUBTITLE);
+            Strings.Add($"STRINGS.CODEX.{id}.BODY.CONTAINER1", STRINGS.CODEX.MYCOWEAVESTRANDS.BODY.CONTAINER1);
         }
 
         public string[] GetDlcIds()
@@ -73,5 +72,5 @@ namespace MycobrickMod
     }
 
 
-    
+
 }

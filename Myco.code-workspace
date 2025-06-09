@@ -2,12 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "../ONI Source/Assembly-CSharp"
-		},
-		{
-			"path": "../ChemicalProcessingMod"
 		}
 	],
 	"settings": {
