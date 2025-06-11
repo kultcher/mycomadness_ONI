@@ -13,7 +13,7 @@ public static class MycoweaveRecipes
         //AddMycoweaveWarmVestRecipe();
     }
 
-    public static void AddMycoweaveStrandsRecipe()  
+    public static void AddMycoweaveStrandsRecipe()
         {
             Debug.Log("[MycobrickMod] Adding MycoweaveStrands recipe...");
 

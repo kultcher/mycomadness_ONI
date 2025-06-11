@@ -1,0 +1,19 @@
+- Mycofiber Tile not showing up in codex
+- Move string declarations (and tag?) from assets patch
+
+Notes:
+- SimCellOccupier SetupDescriptor seems to be where movement speed bonuses are tooltipped?
+- UI.cs maybe where to change build menu sublabels?
+- Can use go.AddorGet<ElementEmitter> or <ElementDropper>
+- outputElement has offsets
+
+TODO:
+- add seed logic to Tar Funnel
+- add fast rotting to raw Mycofiber
+- add mycotecture scaffolding
+- tweak various numbers
+- tweak steam output location for tar funnel
+- add Tar Funnel strings
+- swap out placeholder graphics
+- Add search terms for buildings?
+- Fix "Label" sub-tag on Mycofiber tile in build menu
