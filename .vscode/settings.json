@@ -1,5 +1,0 @@
-{
-  "omnisharp.useModernNet": false,
-  "omnisharp.path": "latest",
-  "omnisharp.projectLoadTimeout": 60
-}
