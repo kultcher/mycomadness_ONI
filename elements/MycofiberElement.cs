@@ -8,7 +8,7 @@ namespace MycobrickMod.Elements
     {
         public const string ID = "MycofiberElement";
         public static readonly SimHashes MycofiberSimHash = (SimHashes)Hash.SDBMLower(ID);
-        //public static readonly Tag MYCOFIBER_TAG = MycofiberSimHash.CreateTag();
+        public static readonly Tag TAG = MycofiberSimHash.CreateTag();
 
         public static readonly Color32 MYCOFIBER_COLOR = new Color32(255, 0, 0, 255); // A more distinct earthy/fungal color
         //public static readonly Color32 MYCOFIBER_COLOR = new Color32(180, 200, 60, 255); // A more distinct earthy/fungal color

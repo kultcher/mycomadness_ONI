@@ -10,7 +10,7 @@ public static class MycoweaveRecipes
         AddMycoweaveStrandsRecipe();
         AddMycoweaveMattingRecipe();
         AddMycoweaveLungsuitRecipe();
-        AddMycoweaveWarmVestRecipe();
+        //AddMycoweaveWarmVestRecipe();
     }
 
     public static void AddMycoweaveStrandsRecipe()  
@@ -60,9 +60,10 @@ public static class MycoweaveRecipes
                 new ComplexRecipe.RecipeElement(SimHashes.BleachStone.CreateTag(), bleachInput)
             };
 
+            // *** Will output Matting after PPP changes
             ComplexRecipe.RecipeElement[] mattingRecipeOutputs = new ComplexRecipe.RecipeElement[]
             {
-                new ComplexRecipe.RecipeElement(TagManager.Create(MycoweaveMattingConfig.ID), mycoweaveMattingOutput, ComplexRecipe.RecipeElement.TemperatureOperation.AverageTemperature, false),
+                new ComplexRecipe.RecipeElement("BasicFabric".ToTag(), mycoweaveMattingOutput, ComplexRecipe.RecipeElement.TemperatureOperation.AverageTemperature, false),
             };
 
             float time = TUNING.BUILDINGS.FABRICATION_TIME_SECONDS.MODERATE;
@@ -71,8 +72,8 @@ public static class MycoweaveRecipes
 
             ComplexRecipe mattingRecipe = new ComplexRecipe(mattingRecipeId, mattingRecipeInputs, mattingRecipeOutputs);
             mattingRecipe.time = time;
-            mattingRecipe.description = MycobrickMod.STRINGS.BUILDINGS.PREFABS.SLUDGEPRESS.MYCOWEAVE_RECIPE_DESC;
-            mattingRecipe.nameDisplay = ComplexRecipe.RecipeNameDisplay.Result;
+            mattingRecipe.description = MycobrickMod.STRINGS.BUILDINGS.PREFABS.CLOTHINGFABRICATOR.MATTING_RECIPE_DESC;
+            mattingRecipe.nameDisplay = ComplexRecipe.RecipeNameDisplay.IngredientToResult;
             mattingRecipe.fabricators = new List<Tag> { TagManager.Create("ClothingFabricator") };
         }
 
@@ -104,28 +105,26 @@ public static class MycoweaveRecipes
         lungsuitRecipe.fabricators = new List<Tag> { TagManager.Create("ClothingFabricator") };
     }
 
-    public static void AddMycoweaveWarmVestRecipe()
-    {
-        ComplexRecipe.RecipeElement[] input = new ComplexRecipe.RecipeElement[]
-        {
-            new ComplexRecipe.RecipeElement("MycoweaveMatting".ToTag(), (float)TUNING.EQUIPMENT.VESTS.WARM_VEST_MASS)
-        };
-        ComplexRecipe.RecipeElement[] output = new ComplexRecipe.RecipeElement[]
-        {
-            new ComplexRecipe.RecipeElement("Warm_Vest".ToTag(), 1f, ComplexRecipe.RecipeElement.TemperatureOperation.AverageTemperature, false)
-        };
-        WarmVestConfig.recipe = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID("ClothingFabricator", input, output), input, output)
-        {
-            time = TUNING.EQUIPMENT.VESTS.WARM_VEST_FABTIME,
-            description = global::STRINGS.EQUIPMENT.PREFABS.WARM_VEST.RECIPE_DESC,
-            nameDisplay = ComplexRecipe.RecipeNameDisplay.ResultWithIngredient,
-            fabricators = new List<Tag>
-            {
-                "ClothingFabricator"
-            },
-            sortOrder = 1
-        };
-    }
-
-
+    // public static void AddMycoweaveWarmVestRecipe()
+    // {
+    //     ComplexRecipe.RecipeElement[] input = new ComplexRecipe.RecipeElement[]
+    //     {
+    //         new ComplexRecipe.RecipeElement("MycoweaveMatting".ToTag(), (float)TUNING.EQUIPMENT.VESTS.WARM_VEST_MASS)
+    //     };
+    //     ComplexRecipe.RecipeElement[] output = new ComplexRecipe.RecipeElement[]
+    //     {
+    //         new ComplexRecipe.RecipeElement("Warm_Vest".ToTag(), 1f, ComplexRecipe.RecipeElement.TemperatureOperation.AverageTemperature, false)
+    //     };
+    //     WarmVestConfig.recipe = new ComplexRecipe(ComplexRecipeManager.MakeRecipeID("ClothingFabricator", input, output), input, output)
+    //     {
+    //         time = TUNING.EQUIPMENT.VESTS.WARM_VEST_FABTIME,
+    //         description = global::STRINGS.EQUIPMENT.PREFABS.WARM_VEST.RECIPE_DESC,
+    //         nameDisplay = ComplexRecipe.RecipeNameDisplay.ResultWithIngredient,
+    //         fabricators = new List<Tag>
+    //         {
+    //             "ClothingFabricator"
+    //         },
+    //         sortOrder = 1
+    //     };
+    // }
 }

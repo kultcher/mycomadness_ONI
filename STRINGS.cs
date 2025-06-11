@@ -39,7 +39,22 @@ namespace MycobrickMod
                         public static LocString NAME = "Mycobrick Spore";
                         public static LocString DESC = "A hardy spore from a Mycobrick Shroom. Can be planted in a farm tile or natural soil.";
                     }
+                    
+                    public class TARFUNNELSEED
+                    {
+                        public static LocString NAME = "Tar Funnel Spore";
+                        public static LocString DESC = "A hardy spore from a Tar Funnel. Requires specialized growing conditions.";
+                    }
                 }
+
+                public class TARFUNNEL
+                {
+                    public static LocString NAME = "Tar Funnel";
+                    public static LocString DESC = "A specialized mushroom that processes crude oil into petroleum while emitting steam.";
+                    public static LocString DOMESTICATEDDESC = "This engineered fungus requires natural gas atmosphere and high temperatures to thrive.";
+                }
+
+
             }
         }
 
@@ -47,6 +62,10 @@ namespace MycobrickMod
         {
             public class PREFABS
             {
+                public class CLOTHINGFABRICATOR
+                {
+                    public static LocString MATTING_RECIPE_DESC = "Weaving cleaned Mycofiber strainds produces a flexible and functional textile.";
+                }
                 public class KILN
                 {
                     public static LocString MYCOBRICK_RECIPE_DESC = "Bake raw mycofiber into durable Mycobricks.";
@@ -59,8 +78,14 @@ namespace MycobrickMod
                 public class MYCOFIBERTILE
                 {
                     public static LocString NAME = "Mycobfiber Tile";
-                    public static LocString DESC = "A soft tile made of squishy, fibrous Mycofiber. Quick to build, but fragile and tough to walk on.";
-                    public static LocString EFFECT = "A soft tile made of squishy, fibrous Mycofiber.";
+                    public static LocString DESC = "A soft tile made of squishy, fibrous Mycofiber. Very quick to build, but ugly, fragile and feels like walking in mud.";
+                    public static LocString EFFECT = "Can be used to build the walls and floors of rooms.\n\nReduces increases Duplicant runspeed.";
+                }
+                public class MYCOBRICKTILE
+                {
+                    public static LocString NAME = "Mycobbrick Tile";
+                    public static LocString DESC = "A tile made of light but sturdy Mycobricks. Quick to build and has good insulative properties.";
+                    public static LocString EFFECT = "Can be used to build the walls and floors of rooms.\n\nReduces increases Duplicant runspeed more than standard tiles.";
                 }
             }
         }

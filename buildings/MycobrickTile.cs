@@ -7,9 +7,9 @@ using STRINGS;
 
 namespace MycobrickMod.Buildings
 {
-    public class MycofiberTileConfig : IBuildingConfig
+    public class MycobrickTileConfig : IBuildingConfig
     {
-        public const string Id = "MycofiberTile";
+        public const string Id = "MycobrickTile";
 
         public override BuildingDef CreateBuildingDef()
         {
@@ -21,10 +21,10 @@ namespace MycobrickMod.Buildings
                 hitpoints: TUNING.BUILDINGS.HITPOINTS.TIER1, // e.g., 100
                 construction_time: 1.5f,
                 construction_mass: TUNING.BUILDINGS.CONSTRUCTION_MASS_KG.TIER1, // 50kg
-                construction_materials: new string[] { MycofiberElement.ID },
+                construction_materials: new string[] { MycobrickElement.ID },
                 melting_point: TUNING.BUILDINGS.MELTING_POINT_KELVIN.TIER1, // e.g., 1600K
                 build_location_rule: BuildLocationRule.Tile,
-                decor: TUNING.BUILDINGS.DECOR.PENALTY.TIER1, // -10 decor
+                decor: TUNING.BUILDINGS.DECOR.NONE, // -10 decor
                 noise: NOISE_POLLUTION.NONE
             );
 
@@ -51,9 +51,8 @@ namespace MycobrickMod.Buildings
             {
                 MycofiberElement.MycofiberSimHash.ToString()
             };
-            // Set the building name and description using ModStrings
-            // These are typically set on the GameObject after it's created, via strings.Add
-            // but BuildingDef has these fields too.
+
+
             //buildingDef.Description = ModStrings.BUILDINGS.MYCOFIBERTILE.DESC;
             //buildingDef.Effect = ModStrings.BUILDINGS.MYCOFIBERTILE.EFFECT;
             // For tooltips and UI, ensure strings are registered:
@@ -71,7 +70,7 @@ namespace MycobrickMod.Buildings
             simCellOccupier.doReplaceElement = true; // This makes it replace the natural tile
             simCellOccupier.notifyOnMelt = true;
 
-            simCellOccupier.movementSpeedMultiplier = DUPLICANTSTATS.MOVEMENT_MODIFIERS.PENALTY_1; // 10% movement penalty
+            simCellOccupier.movementSpeedMultiplier = 1.33f;
 
             go.AddOrGet<KAnimGridTileVisualizer>(); // Handles visuals for tiles, connections, etc.
             go.AddOrGet<BuildingHP>().destroyOnDamaged = true;

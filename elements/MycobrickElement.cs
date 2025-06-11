@@ -8,6 +8,7 @@ namespace MycobrickMod.Elements
     {
         public const string ID = "MycobrickElement";
         public static readonly SimHashes MycobrickSimHash = (SimHashes)Hash.SDBMLower(ID);
+        public static readonly Tag TAG = MycobrickSimHash.CreateTag();
         public static Color32 MYCOBRICK_COLOR = new Color32(0, 0, 255, 255); // Your reddish-brown
 
 

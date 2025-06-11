@@ -17,13 +17,13 @@ namespace MycobrickMod.Patches
 
         public static void Postfix()
         {
-            Element mycofiber = ElementLoader.FindElementByHash(MycofiberElement.MycofiberSimHash);
+            //Element mycofiber = ElementLoader.FindElementByHash(MycofiberElement.MycofiberSimHash);
 
             //=: Giving Mycofiber Decor and Temperature modifications :====================================================
-            AttributeModifier mycofiberDecorModifier = new AttributeModifier(Db.Get().BuildingAttributes.Decor.Id, -20f, null, false, false, true);
+            //AttributeModifier mycofiberDecorModifier = new AttributeModifier(Db.Get().BuildingAttributes.Decor.Id, -10f, null, false, false, true);
             //AttributeModifier mycofiberTempModifier = new AttributeModifier(Db.Get().BuildingAttributes.OverheatTemperature.Id, -30f, mycofiber.name);
-            mycofiber.attributeModifiers.Add(mycofiberDecorModifier);
-            //mycofiber.attributeModifiers.Add(mycofiberTempModifier);
+            //mycofiber.attributeModifiers.Add(mycofiberDecorModifier);
+ 
         }
 
         [HarmonyPatch(typeof(ElementLoader), "CollectElementsFromYAML")]

@@ -62,6 +62,10 @@
   <CodexYamlFiles Include="codex\**\*" />
 </ItemGroup>
 
+<ItemGroup>
+  <AssetsFiles Include="anim\**\*" />
+</ItemGroup>
+
 
 <Target Name="PreBuild" BeforeTargets="Build">
   <RemoveDir Directories="$(OniModsPath)" />
@@ -76,7 +80,8 @@
         DestinationFolder="$(OniModsPath)\data" />
   <Copy SourceFiles="@(CodexYamlFiles)"
         DestinationFolder="$(OniModsPath)\codex\%(RecursiveDir)" />
-
+  <Copy SourceFiles="@(AssetsFiles)"
+        DestinationFolder="$(OniModsPath)\anim\%(RecursiveDir)" />
 
 </Target>
 

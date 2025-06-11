@@ -57,6 +57,8 @@ namespace MycobrickMod.Patches
             {
                 Debug.Log("[MycobrickMod] Registering Mycobrick Shroom and items...");
                 CROPS.CROP_TYPES.Add(new Crop.CropVal("MycofiberElement", 100f, 300, true));
+       			CROPS.CROP_TYPES.Add(new Crop.CropVal(SimHashes.Petroleum.ToString(), 900f, 2, true));
+
                 new MycoweaveStrandsConfig().CreatePrefab();
 
             }

@@ -33,7 +33,8 @@ namespace MycobrickMod
             new List<Tag>
             {
                 GameTags.IndustrialIngredient,
-                GameTags.BuildingFiber
+                GameTags.BuildingFiber,
+                "BasicFabric".ToTag()
             });
 
             prefab.AddOrGet<EntitySplitter>();
